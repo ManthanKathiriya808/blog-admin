@@ -1,5 +1,5 @@
 const admin = require("../models/adminSchema")
-
+const moment = require("moment")
 
 module.exports.dashboard =  (req,res)=>{
 
@@ -24,9 +24,13 @@ module.exports.addAdmin = (req,res)=>{
         return false
     }
 }
-module.exports.viewAdmin = (req,res)=>{
+module.exports.viewAdmin =async (req,res)=>{
     try {
-        return res.render("viewAdmin")
+
+        let adminData = await admin.find({})
+        return res.render("viewAdmin",{
+            adminData
+        })
     } catch (error) {
                 console.log(error)
 
@@ -41,7 +45,8 @@ module.exports.insertdata = async (req,res)=>{
     let photo = req.file.path
 
    name = fname + " " + lname;
-    try {
+   
+   try {
         
         const adminData = await admin.create({
             name,
