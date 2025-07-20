@@ -69,3 +69,45 @@ module.exports.insertdata = async (req,res)=>{
         return false
     }
 }
+
+
+module.exports.deleteAdmin = async (req,res)=>{
+
+
+
+    try {
+        
+     const id = req.params.id
+
+        const deleteAdmin = await admin.findByIdAndDelete(id)
+
+        console.log("data deleted successfully")
+       
+        return res.redirect("/admin/view_admin")
+
+    } catch (error) {
+            console.log(error)
+
+        return false
+    }
+}
+
+
+module.exports.updateAdmin = async (req,res)=>{
+      
+
+    try {
+        
+        const id = req.params.id
+        const update = await admin.findById(id)
+
+        return res.render("updateAdmin",{
+            update
+        })
+
+    } catch (error) {
+        console.log(error)
+
+        return false
+    }
+}

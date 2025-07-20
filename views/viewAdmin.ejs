@@ -65,8 +65,8 @@
                       <td><%= ele.gender %></td>
                       <td><%= ele.qualification.join(", ") %></td>
                       <td>
-                        <a  class="btn btn-danger">Delete</a>
-                        <a class="btn btn-warning">Update</a>
+                        <a href="/admin/delete/<%= ele.id%>" class="btn btn-danger">Delete</a>
+                        <a href="/admin/update/<%= ele.id%>" class="btn btn-warning">Update</a>
                       </td>
                       
                     </tr>
