@@ -13,4 +13,5 @@ routes.get("/view_admin", adminCtl.viewAdmin)
 routes.post("/insertdata", admin.uploadAdminImage ,adminCtl.insertdata)
 routes.get("/delete/:id", adminCtl.deleteAdmin)
 routes.get("/update/:id", adminCtl.updateAdmin)
+routes.post("/updataAdminData", admin.uploadAdminImage, adminCtl.updataAdminData)
 module.exports = routes

@@ -37,7 +37,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="card">
-                <form class="form-horizontal" action="/admin/insertdata" method="post" enctype="multipart/form-data">
+                <% var newName = update.name.split(" ") %>
+                <!-- <% var newName = update.name.split(" ") %> -->
+                <form class="form-horizontal" action="/admin/updataAdminData" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="<%= update.id %>" />
                   <div class="card-body">
                     <h4 class="card-title">Update Admin</h4>
                     <div class="form-group row">
@@ -51,7 +54,7 @@
                         <input
                           type="text"
                             name="fname"
-                            value = "<%= update.name %>"
+                            value = "<%= newName[0] %>"
                           class="form-control"
                           id="fname"
                           placeholder="First Name Here"
@@ -69,6 +72,8 @@
                           type="text"
                             name="lname"
                           class="form-control"
+                            value = "<%= newName[1] %>"
+
                           id="lname"
                           placeholder="Last Name Here"
                         />
@@ -85,6 +90,8 @@
                             name="email"
                           class="form-control"
                           id="lname"
+                            value = "<%= update.email %>"
+
                           placeholder="Email Here"
                         />
                       </div>
@@ -98,6 +105,7 @@
                         <input
                           name="password"
                          
+                            value = "<%= update.password %>"
                         
                           class="form-control"
                           id="lname"
@@ -114,7 +122,8 @@
                         >Message</label
                       >
                       <div class="col-sm-9">
-                        <textarea class="form-control" name="message"></textarea>
+                        <textarea class="form-control" name="message"><%= update.message %>
+                        </textarea>
                       </div>
                     </div>
                            <div class="form-group row">
@@ -128,7 +137,7 @@
 
                  <% ["suarat","bhavnagar","ahmedabad"].map((ele)=>{ %>
 
-                           <option value="<%= ele %>"><%=ele%></option> 
+                           <option <% if(update.city == ele) { %> selected <% } %> value="<%= ele %>"><%=ele%></option> 
 
 
                           <%  }) %>
@@ -145,11 +154,14 @@
                         <input
                           type="radio"
                           class="form-check-input"
-                          id="customControlValidation1"
+                        
                           name="gender"
+                          <% if(update.gender == "male") { %>   
+                            checked
+                             <%} %>
                           value="male"
-
                           required
+
                         />
                         <label
                           class="form-check-label mb-0"
@@ -161,9 +173,13 @@
                         <input
                           type="radio"
                           class="form-check-input"
-                          id="customControlValidation2"
+                        
                           name="gender"
                           value="female"
+                          <% if(update.gender == "female") { %>   
+                            checked
+                             <%} %>
+
                           required
                         />
                         <label
@@ -185,6 +201,7 @@
                             value="12th"
                           class="form-check-input"
                           id="customControlAutosizing1"
+                          <% if(update.qualification == "12th") { %> checked <% } %>
                         />
                         <label
                           class="form-check-label mb-0"
@@ -198,6 +215,8 @@
                            name="qualification"
                             value="graduate"
                           class="form-check-input"
+                          <% if(update.qualification == "graduate") { %> checked <% } %>
+
                           id="customControlAutosizing2"
                         />
                         <label
@@ -211,8 +230,11 @@
                           type="checkbox"
                           class="form-check-input"
                            name="qualification"
-                            value="under-graduate"
-                          id="customControlAutosizing3"
+                           
+                           value="under-graduate"
+                           id="customControlAutosizing3"
+                           
+                           <% if(update.qualification == "under-graduate") { %> checked <% } %>
                         />
                         <label
                           class="form-check-label mb-0"
@@ -225,11 +247,13 @@
                   <div class="form-group row">
                     <label class="col-md-3">File Upload</label>
                     <div class="col-md-9">
+                      <img src="/<%= update.photo%>" width="50px" alt="">
                       <div class="custom-file">
+
                         <input
                           type="file"
                           name="photo"
-                          class="custom-file-input"
+                          class="custom-file-input mt-2"
                           id="validatedCustomFile"
                           required
                         />
