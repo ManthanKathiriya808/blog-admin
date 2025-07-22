@@ -40,6 +40,12 @@
                 <div class="card-body">
                   <h5 class="card-title mb-0">Admin Table</h5>
                 </div>
+                <div >
+                  <form action="/admin/view_admin" class="px-5 my-3 d-flex">
+                      <input type="text" class="form-control " placeholder="Searching..." name="searchAdmin" value="<%= search %>" id="searchAdminData" />
+                  <button type="submit" class="btn btn-success text-white">Search</button>
+                  </form>
+                </div>
                 <table class="table">
                   <thead>
                     <tr>
@@ -50,6 +56,7 @@
                       <th scope="col">City</th>
                       <th scope="col">Gender</th>
                       <th scope="col">Qualification</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -64,6 +71,7 @@
                       <td><%= ele.city %></td>
                       <td><%= ele.gender %></td>
                       <td><%= ele.qualification.join(", ") %></td>
+                      <td><div class="btn text-white btn-success"><%= ele.status %></div></td>
                       <td>
                         <a href="/admin/delete/<%= ele.id%>" class="btn btn-danger">Delete</a>
                         <a href="/admin/update/<%= ele.id%>" class="btn btn-warning">Update</a>
@@ -71,6 +79,23 @@
                       
                     </tr>
                     <%  }) %>
+
+<tr>
+  
+             <td colspan="9">
+                     <% for(var i=0; i< totalPage ;i++){  %>
+                       <a href="?page=<%=i%>&searchAdmin=<%= search %>" class="btn btn-outline-dark"><%= i +1%></a>
+                   <% }%>
+             </td>
+</tr>
+
+<tr>
+      <!-- <td colspan="9">
+          <button>Prev</button>
+          <button><%= Number(page)+ 1 %></button>
+          <button>Next</button>
+      </td> -->
+</tr>
                     
                   </tbody>
                 </table>

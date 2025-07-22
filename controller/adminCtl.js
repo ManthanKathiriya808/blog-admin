@@ -26,10 +26,43 @@ module.exports.addAdmin = (req,res)=>{
 }
 module.exports.viewAdmin =async (req,res)=>{
     try {
+        let page = 0
+        if(req.query.page){
+            page = req.query.page
+        }
 
-        let adminData = await admin.find({})
+        let search = ""
+        
+        if(req.query.searchAdmin){
+            search = req.query.searchAdmin
+        }
+
+
+        let perPage = 2
+        let adminData = await admin.find({
+            $or : [
+                { name : {$regex : search , $options : "i"}},
+                { email : {$regex : search , $options : "i"}},
+                { city : {$regex : search , $options : "i"}},
+                { gender : {$regex : search , $options : "i"}},
+                { qualification : {$regex : search , $options : "i"}},
+            ]
+        }).skip(page*perPage).limit(perPage)
+
+        let countAllAdminRecord = await admin.find({
+            $or : [
+                { name : {$regex : search , $options : "i"}},
+                { email : {$regex : search , $options : "i"}},
+                { city : {$regex : search , $options : "i"}},
+                { gender : {$regex : search , $options : "i"}},
+                { qualification : {$regex : search , $options : "i"}},
+            ]
+        }).countDocuments()
+
+       let totalPage = Math.ceil(countAllAdminRecord/perPage)
+
         return res.render("viewAdmin",{
-            adminData
+            adminData, totalPage , search, page
         })
     } catch (error) {
                 console.log(error)
@@ -158,5 +191,40 @@ module.exports.updataAdminData = async (req,res)=>{
        }
     }
 
+// searching and pagination
+
+module.exports.searchAdminData = async (req,res)=>{
+
+    try {
+        let search = ''
+
+        if(req.query){
+            search = req.query.searchAdmin
+        }
+
+        let page = 0 
+        let perPage = 2
+
+        let searchData = await admin.find({
+
+            $or : [
+            { name: { $regex : search, $options : "i" } },
+            {email : { $regex : search, $options:"i"}},
+            {city : { $regex : search,$options:"i"}},
+            {gender : { $regex : search,$options:"i"}},
+            {qualification : { $regex : search,$options:"i"}}
+            ]
+        }).skip(page*perPage).limit(perPage)
+
+        console.log(searchData)
+        return res.render("viewAdmin", {
+            adminData : searchData
+        })
+
+    } catch (error) {
+        console.log(error)
+        return res.redirect("/admin/view_admin")
+    }
+}
 
 
