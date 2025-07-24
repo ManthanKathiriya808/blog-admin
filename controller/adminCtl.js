@@ -47,7 +47,7 @@ module.exports.viewAdmin =async (req,res)=>{
                 { gender : {$regex : search , $options : "i"}},
                 { qualification : {$regex : search , $options : "i"}},
             ]
-        }).skip(page*perPage).limit(perPage)
+        }).sort({_id : -1}).skip(page*perPage).limit(perPage)
 
         let countAllAdminRecord = await admin.find({
             $or : [
