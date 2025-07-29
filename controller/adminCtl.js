@@ -13,6 +13,18 @@ module.exports.dashboard =  (req,res)=>{
         
     }
 }
+module.exports.authLogin =  (req,res)=>{
+
+    try {
+        
+        return res.render("authLogin")
+
+    } catch (error) {
+        console.log(error)
+        return res.redirect("/admin")
+        
+    }
+}
 
 
 module.exports.addAdmin = (req,res)=>{
@@ -227,4 +239,19 @@ module.exports.searchAdminData = async (req,res)=>{
     }
 }
 
+
+module.exports.loginAdmin =  (req,res)=>{
+    try {
+        if(req.user){
+            console.log("login successfully")
+            console.log(req.user)
+            return res.redirect("/admin/dashboard")
+        }
+
+        return res.redirect("/admin")
+    } catch (error) {
+        console.log(error)
+        return res.redirect("/admin")
+    }
+}
 
