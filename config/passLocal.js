@@ -61,6 +61,17 @@ passport.isAuth = function(req,res,next){
 }
 
 
+passport.userAuth = function(req,res,next){
+
+
+
+        res.locals.user = req.user
+        next()
+  
+
+
+}
+
 
 
 

@@ -255,3 +255,14 @@ module.exports.loginAdmin =  (req,res)=>{
     }
 }
 
+
+module.exports.adminProfile = (req,res)=>{
+
+    try {
+        
+        return res.render("adminProfile")
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}

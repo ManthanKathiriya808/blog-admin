@@ -27,7 +27,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
-
+app.use(passport.userAuth)
 app.use("/", require("./routes/index"))
 
 
