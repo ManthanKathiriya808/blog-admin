@@ -71,7 +71,7 @@
               class="form-horizontal mt-3"
               id="loginform"
             method="post"
-              action="/admin/loginAdmin"
+              action="/admin/forgotPassEmail"
             >
               <div class="row pb-4">
                 <div class="col-12">
@@ -93,24 +93,7 @@
                       required=""
                     />
                   </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span
-                        class="input-group-text bg-warning text-white h-100"
-                        id="basic-addon2"
-                        ><i class="mdi mdi-lock fs-4"></i
-                      ></span>
-                    </div>
-                    <input
-                      type="passowrd"
-                      class="form-control form-control-lg"
-                      placeholder="Password"
-                      aria-label="Password"
-                      name="password"
-                      aria-describedby="basic-addon1"
-                      required=""
-                    />
-                  </div>
+               
                 </div>
               </div>
               <div class="row border-top border-secondary">
@@ -119,16 +102,16 @@
                     <div class="pt-3">
                       <a
                         class="btn btn-info"
-                       
-                        href="/admin/forgotPassEmail"
+                      
+                        href="/admin/"
                       >
-                        <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
+                        <i class="mdi mdi-lock fs-4 me-1"></i> Already Know Password
                       </a>
                       <button
                         class="btn btn-success float-end text-white"
                         type="submit"
                       >
-                        Login
+                        Get OTP
                       </button>
                     </div>
                   </div>
@@ -164,7 +147,7 @@
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->
-    <script>
+ <script>
       $(".preloader").fadeOut();
       // ==============================================================
       // Login and Recover Password

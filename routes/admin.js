@@ -13,10 +13,11 @@ routes.get("/add_admin",passport.isAuth, adminCtl.addAdmin)
 routes.get("/view_admin",passport.isAuth, adminCtl.viewAdmin)
 routes.post("/insertdata",passport.isAuth, admin.uploadAdminImage ,adminCtl.insertdata)
 routes.get("/delete/:id",passport.isAuth, adminCtl.deleteAdmin)
-routes.get("/update/:id", adminCtl.updateAdmin)
+routes.get("/update/:id",passport.isAuth, adminCtl.updateAdmin)
 routes.get("/adminProfile", passport.isAuth, adminCtl.adminProfile)
 routes.get("/searchAdminData", adminCtl.searchAdminData)
 routes.post("/updataAdminData", admin.uploadAdminImage, adminCtl.updataAdminData)
+routes.post("/changePass",adminCtl.changePass)
 routes.get("/logout",function(req,res,next){
     req.logout(function(err){
         if(err){
@@ -25,4 +26,8 @@ routes.get("/logout",function(req,res,next){
         res.redirect("/admin/")
     })
 })
+
+routes.get("/changePassword",passport.isAuth,adminCtl.changePassword)
+routes.get("/forgotPassEmail",adminCtl.forgotPassEmail)
+routes.post("/forgotPassEmail",adminCtl.forgotPassEmails)
 module.exports = routes

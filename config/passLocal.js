@@ -14,9 +14,7 @@ passport.use(new localStrategy(
                 return done(null,false)
             }
 
-            console.log("Email:", email);
-console.log("Password entered:", password);
-console.log("Password in DB:", currUser?.password);
+            
 
             if(currUser.password != password){
                 return done(null,false)
