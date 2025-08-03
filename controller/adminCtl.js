@@ -347,7 +347,7 @@ module.exports.forgotPassEmails = async (req,res)=>{
                 console.log("No User Found")
         return res.redirect("/admin/")
        }
-       const otp = Math.round(Math.random*9999)
+       const otp = Math.round(Math.random*10000)
 
 
        const transporter = nodemailer.createTransport({
@@ -356,7 +356,7 @@ module.exports.forgotPassEmails = async (req,res)=>{
   secure: false,
   auth: {
     user: "manthankathiriya808@gmail.com",
-    pass: "Manthaan808@",
+    pass: "",
   },
 });
 

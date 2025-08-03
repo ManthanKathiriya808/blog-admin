@@ -30,4 +30,6 @@ routes.get("/logout",function(req,res,next){
 routes.get("/changePassword",passport.isAuth,adminCtl.changePassword)
 routes.get("/forgotPassEmail",adminCtl.forgotPassEmail)
 routes.post("/forgotPassEmail",adminCtl.forgotPassEmails)
+
+routes.use("/blog",passport.isAuth,require("../routes/blog"))
 module.exports = routes
