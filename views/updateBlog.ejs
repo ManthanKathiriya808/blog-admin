@@ -62,7 +62,7 @@
                 
                         <% categories.map((ele,index)=>{  %>
 
-                          <option <% if(data.categoryName == ele) { %> selected <% } %>  value="<%=ele.categoryName%>"><%= ele.categoryName %></option> 
+                          <option <% if(data.id == ele.id) { %> selected <% } %>  value="<%=ele.id%>"><%= ele.categoryName %></option> 
                        <% }) %>
 
 

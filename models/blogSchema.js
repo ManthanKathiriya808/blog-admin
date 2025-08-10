@@ -4,8 +4,9 @@ const multer = require("multer")
 const moment = require("moment")
 
 const blogSchema = mongoose.Schema({
-    category:{
-         type:String,
+    categoryId:{
+         type:mongoose.Schema.Types.ObjectId,
+         ref:"category",
         required:true
     },
     blogName:{

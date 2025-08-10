@@ -48,10 +48,10 @@ module.exports.insertBlog = async (req,res)=>{
     try {
 
         let data = await blog.create({
-            category,
+           categoryId: category,
             blogName,
-            blogDesc,
-            blogImage
+            blogImage,
+            blogDesc
         })
 
         console.log("blog added successfully")
