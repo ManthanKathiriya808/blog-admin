@@ -1,7 +1,8 @@
 const express = require("express")
-// const adminCtl = require("../controller/adminCtl")
+const userCtl = require("../controller/userCtl")
 const routes = express.Router()
 
-// routes.get("/", adminCtl.dashboard)
+routes.get("/", userCtl.dashboard)
+routes.get("/blogDetails/:id", userCtl.blogDetails)
 
 module.exports = routes

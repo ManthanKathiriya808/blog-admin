@@ -1,0 +1,31 @@
+
+<%- include("userHeader") %>
+
+    <!-- Blog List -->
+    <main class="col-lg-9">
+      <!-- Blog Card -->
+     
+      <% blog.map((ele,index)=>{  %>
+                 <div class="card mb-4 shadow-sm blog-card">
+        <div class="row g-0 d-flex align-items-center">
+          <div class="col-md-4">
+            <img src="<%= ele.blogImage%>" class="img-fluid rounded-start" style="width: 400px; height:200px " alt="Blog 1">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-teal"><%= ele.blogName%></h5>
+              <p class="card-text text-muted"></p>
+              <a href="/blogDetails/<%=ele.id %>" class="btn btn-teal">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+     <% }) %>
+
+  
+
+    </main>
+
+  </div>
+</div>
+<%- include("userFooter") %>
